@@ -73,6 +73,7 @@ Security Scan Main Branch:
           -action UploadAndScan -appname "Verademo123" -createprofile true -autoscan true
           -filepath ./app/target/verademo.war -version "Job ${CI_JOB_ID} in pipeline ${CI_PIPELINE_ID}" 
           -scantimeout 15 2>&1 | tee policy_scan_output.txt
+
     artifacts:
         paths:
             - policy_scan_output.txt
