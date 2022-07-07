@@ -68,18 +68,9 @@ Security Scan Main Branch:
     script:
         - ls -la
         - ls -la app
-        - ls -la app/target
         - java -jar /opt/veracode/api-wrapper.jar -vid ${vid} -vkey ${vkey}
-          -action UploadAndScan -appname "Verademo123" -createprofile true -autoscan true
+          -action UploadAndScan -appname "Verademo123" -createprofile true 
           -filepath ./app/target/verademo.war -version "Job ${CI_JOB_ID} in pipeline ${CI_PIPELINE_ID}" 
-          -scantimeout 15 2>&1 | tee policy_scan_output.txt
-
-    artifacts:
-        paths:
-            - policy_scan_output.txt
-        when: always
-        name: "veracode-POLICY-SCAN-$CI_COMMIT_REF_NAME-$CI_COMMIT_SHORT_SHA"
-    allow_failure: true
 ```
 
 Once you save the GitLab Pipeline it will checkout the code, build and artifact the app, and then submit the application for a Static + Software Composition Analysis scan.  
@@ -87,9 +78,6 @@ Once you save the GitLab Pipeline it will checkout the code, build and artifact 
 ![Create Pipeline and Import below yml](images/GitLab-Getting-Started-5.png)
 
 Check the platform to review the results.
-
-
-
 
 ## To go further, visit -
 
